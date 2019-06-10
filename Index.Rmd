@@ -1,0 +1,110 @@
+---
+title: "Index Mini-Homework"
+author: "Mislael A. Valentin Cortes"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    fig_height: 4
+    highlight: haddock
+    reveal_options:
+      chalkboard:
+        theme: chalkboard
+        toggleChalkboardButton: yes
+        toggleNotesButton: yes
+      previewLinks: yes
+      progress: yes
+      slideNumber: yes
+    reveal_plugins:
+    - chalkboard
+    - zoom
+    self_contained: no
+    theme: solarized
+    transition: convex
+  radix::radix_article:
+    toc: true
+    toc_depth: 2
+  html_document:
+    highlight: haddock
+    number_sections: yes
+    theme: default
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+  pagedown::html_paged: 
+    highlight: haddock
+    toc: yes
+    number_sections: yes
+    theme: default
+  bookdown::gitbook:
+    highlight: haddock
+    css: styles.css
+    config:
+      download:
+      - introduction-to-R.pdf
+      - introduction-to-R.epub
+  tint::tintPdf:
+    highlight: haddock
+    number_sections: yes
+    toc: yes
+  bookdown::epub_book: default  
+  tint::tintHtml:
+    highlight: haddock
+    number_sections: yes
+    toc: yes
+  tufte::tufte_handout:
+    fig_height: 2.5
+    toc: yes
+    number_sections: yes
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+```{r, include=FALSE}
+library(ggplot2)
+library(ggthemes)
+library(grid)
+library(tidyr)
+library(WDI)
+library(googleVis)
+library(haven)
+library(readxl)
+
+WorldBankDataDemo <- read_excel("C:\\Users\\valen\\Box Sync\\mislaelv\\homework\\WorldBankDataDemo.xlsx")
+
+```
+
+
+# Background
+
+## World Bank Data Life Expectancy Exercise Part 1 
+
+
+```{r}
+ggplot(WorldBankDataDemo, aes(x=year, y=life_expectancy, color=life_expectancy))+geom_point()+scale_colour_gradientn(colours = rainbow(2))+theme_minimal()+labs(title = "Life expectancy by year", x="Year", y="Life Expectancy")
+```
+
+## World Bank Data Life Expectancy Exercise Part 1.2 
+
+```{r}
+ggplot(WorldBankDataDemo, aes(x=year, y=life_expectancy, fill=year))+stat_summary(fun.y = "mean", geom = "bar")+labs(title = "World Bank Data: Life Expectancy by Year", x="Year", y="Life Expectancy")+theme_minimal()
+```
+
+
+
+## World Bank Data Life Expectancy Exercise Part 2
+
+
+ggplot(myReshapedData, aes(x=xaxis, y=yaxis))+geom_bar(stat = "identity")+theme_minimal()
+
+
+
+## Washtenaw County Map
+
+Washtenaw %>% ggplot(aes(fill=estimate))+geom_sf()+scale_fill_viridis_c()+theme_minimal()+labs(title = "Washtenaw County", subtitle = "Median Family Income", fill="Median Income")
