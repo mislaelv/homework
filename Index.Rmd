@@ -1,6 +1,6 @@
 ---
 title: "Index Mini-Homework"
-author: "Mislael A. Valentin Cortes"
+author: "Mislael A. Valentin CortesX"
 date: "`r Sys.Date()`"
 output:
   revealjs::revealjs_presentation:
